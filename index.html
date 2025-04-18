@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>First Avengers 1963</title>
+  <link rel="icon" type="image/png" href="A logo.png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="carousel" id="carousel">
+    <div class="img-box">
+      <img id="hero-image" src="Ant Man.png" alt="Ant Man" class="show">
+    </div>
+
+    <div class="info-box">
+      <div class="info-slider">
+        <div class="info-item">
+          <h2 id="hero-name">Ant Man</h2>
+          <p id="hero-bio">The first avenger in comics</p>
+          <a href="#" id="view-more-btn" class="btn">View More</a>
+        </div>
+      </div>
+    </div>
+
+    <ul class="thumb">
+      <li class="selected" 
+          data-img="Ant Man.png" 
+          data-name="Ant Man" 
+          data-bio="A genius who can shrink and talk to ants." 
+          data-bg="#ff6a00">
+        <img src="ANT MAN2.png" alt="Ant Man">
+      </li>
+      <li 
+          data-img="HULK3.png" 
+          data-name="Hulk" 
+          data-bio="A scientist who turns into a giant green rage monster." 
+          data-bg="#2e8b57">
+        <img src="HULK4.png" alt="Hulk">
+      </li>
+      <li 
+          data-img="IRON MAN3.png" 
+          data-name="Iron Man" 
+          data-bio="Billionaire, genius, playboy, philanthropist in a suit of armor." 
+          data-bg="#cc0000">
+        <img src="IRON MAN4.png" alt="Iron Man">
+      </li>
+      <li 
+          data-img="THOR3.png" 
+          data-name="Thor" 
+          data-bio="The god of thunder from Asgard wielding the mighty Mjölnir." 
+          data-bg="#007bff">
+        <img src="THOR4.png" alt="Thor">
+      </li>
+      <li 
+          data-img="WASP3.png" 
+          data-name="Wasp" 
+          data-bio="A high-flying hero with wings and stingers." 
+          data-bg="#ffd700">
+        <img src="WASP4.png" alt="WASP">
+      </li>
+    </ul>
+  </div>
+
+  
+
+
+
+
+  <!-- Audio and Play button -->
+  <audio id="hero-audio" src=""></audio>
+  <button id="play-audio-btn" class="play-button" style="display: none;">▶</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
