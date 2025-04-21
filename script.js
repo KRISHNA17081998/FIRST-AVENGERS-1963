@@ -2,11 +2,12 @@ const thumbs = document.querySelectorAll('.thumb li');
 const heroImage = document.getElementById('hero-image');
 const heroName = document.getElementById('hero-name');
 const heroBio = document.getElementById('hero-bio');
+const heroDetails = document.getElementById('hero-details');
 const carousel = document.getElementById('carousel');
 const audio = document.getElementById('hero-audio');
 const playBtn = document.getElementById('play-audio-btn');
 
-// Map hero names to their respective audio files
+
 const audioMap = {
   "Ant Man": "audio/antman.mp3",
   "Hulk": "audio/hulk.mp3",
@@ -15,65 +16,115 @@ const audioMap = {
   "Wasp": "audio/wasp.mp3"
 };
 
-// Initialize the first item (to avoid errors on first load)
+
+const heroDetailsMap = {
+  "Ant Man": {
+    realName: "Dr. Hank Pym",
+    height: "Variable (down to ant size)",
+    powers: "Size manipulation, genius intellect, communicates with ants"
+  },
+  "Hulk": {
+    realName: "Dr. Bruce Banner",
+    height: "7 ft+ as Hulk",
+    powers: "Super strength, regeneration, rage-fueled transformation"
+  },
+  "Iron Man": {
+    realName: "Tony Stark",
+    height: "6'1\"",
+    powers: "Powered armor suit, flight, missiles, repulsor blasts"
+  },
+  "Thor": {
+    realName: "Thor Odinson",
+    height: "6'6\"",
+    powers: "God of Thunder, controls lightning, super strength, Mjölnir"
+  },
+  "Wasp": {
+    realName: "Janet van Dyne",
+    height: "Variable (tiny to human)",
+    powers: "Flight, energy stingers, size manipulation"
+  }
+};
+
+
 const firstItem = document.querySelector('.thumb li');
 const initialName = firstItem.getAttribute('data-name');
 const initialImg = firstItem.getAttribute('data-img');
 const initialBg = firstItem.getAttribute('data-bg');
 const initialAudio = audioMap[initialName];
+const initialDetails = heroDetailsMap[initialName];
 
 heroImage.src = initialImg;
+heroImage.alt = initialName;
 heroName.textContent = initialName;
 carousel.style.backgroundColor = initialBg;
+
 if (initialAudio) {
   audio.src = initialAudio;
   audio.play();
   playBtn.style.display = 'block';
 }
 
-// Event listener for play button
+if (initialDetails) {
+  heroDetails.innerHTML = `
+    <strong>Real Name:</strong> ${initialDetails.realName}<br>
+    <strong>Height:</strong> ${initialDetails.height}<br>
+    <strong>Powers:</strong> ${initialDetails.powers}
+  `;
+}
+
+
 playBtn.addEventListener('click', () => {
-  audio.currentTime = 0; // Rewind to the start
-  audio.play(); // Play the audio
+  audio.currentTime = 0;
+  audio.play();
 });
 
-// Event listener for the thumbnails
+
 thumbs.forEach((thumb) => {
   thumb.addEventListener('click', () => {
-    // Remove 'selected' class from all thumbnails
     thumbs.forEach(t => t.classList.remove('selected'));
     thumb.classList.add('selected');
 
-    // Get the new hero's data
+  
     const newImg = thumb.getAttribute('data-img');
     const newName = thumb.getAttribute('data-name');
     const newBio = thumb.getAttribute('data-bio');
     const newBg = thumb.getAttribute('data-bg');
+    const newAudio = audioMap[newName];
+    const newDetails = heroDetailsMap[newName];
 
-    // Fade out current image
+  
     heroImage.classList.remove('show');
 
-    // Update the hero's name, bio, and background color
+  
     heroName.textContent = newName;
     heroBio.textContent = newBio;
     carousel.style.backgroundColor = newBg;
 
-    // Update the hero image and fade it in
+    if (newDetails) {
+      heroDetails.innerHTML = `
+        <strong>Real Name:</strong> ${newDetails.realName}<br>
+        <strong>Height:</strong> ${newDetails.height}<br>
+        <strong>Powers:</strong> ${newDetails.powers}
+      `;
+    } else {
+      heroDetails.textContent = "";
+    }
+
+  
     setTimeout(() => {
       heroImage.src = newImg;
       heroImage.alt = newName;
-      heroImage.classList.add('show'); // Show the new image
+      heroImage.classList.add('show');
     }, 100);
 
-    // Set and play audio for the selected hero
-    const newAudio = audioMap[newName];
+    
     if (newAudio) {
       audio.src = newAudio;
       audio.play();
-      playBtn.style.display = 'block'; // Show the play button
+      playBtn.style.display = 'block';
     } else {
-      audio.pause(); // Stop audio if no audio file
-      playBtn.style.display = 'none'; // Hide the play button
+      audio.pause();
+      playBtn.style.display = 'none';
     }
   });
 });

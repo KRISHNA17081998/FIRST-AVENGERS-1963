@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+.navbar {
+  width: 100%;
+  background-color: black;
+  padding: 15px 0;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar h1 {
+  font-size: 24px;
+  color: #007bff;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -125,7 +145,6 @@ body, html {
   display: none;
 }
 
-/* Mobile Responsiveness */
 
 @media (max-width: 1024px) {
   .info-box {
